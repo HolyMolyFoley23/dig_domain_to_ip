@@ -13,6 +13,7 @@ actions:
       - name: domain
         description: single domain name
         example: "google.com"
+        multiline: false
         required: true
         schema:
           type: string
