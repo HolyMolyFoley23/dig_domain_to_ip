@@ -1,13 +1,13 @@
 import time
 import json
 import random
-#import socket
+import socket
 import asyncio
 import requests
 
 import ipaddress
 import sys
-import subprocess
+#import subprocess
 from random import randint
 from time import sleep
 
@@ -28,7 +28,7 @@ class dig_domain_to_ip(AppBase):
 
 
     async def domain_to_ip(self,domain_names):
-	 return str(subprocess.getoutput('ls'))
+	 return str(socket.getaddrinfo("google.com",0,0,0,0,0)[-1][-1][0])
 #        domains = domain_names.splitlines()
 #        output_dig=[]
 #        for dom in domains:
