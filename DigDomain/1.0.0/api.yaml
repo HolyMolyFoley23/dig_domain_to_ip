@@ -1,34 +1,22 @@
 walkoff_version: 1.0.0
 app_version: 1.0.0
-name: DigDomain
+name: dig_domain_to_ip
 description: Gets IPs From Domains
 contact_info:
   name: "Bionic Cyber"
   url: https://github.com/bioniccyber
   email: "jfoley@bioniccyber.com"
 actions:
-  - name: single_domain_to_ip
+  - name: domain_to_ip
     description: Digs a single domain
     parameters:
-      - name: domain
-        description: single domain name
+      - name: domain_names
+        description: domain name
+        multiline: true
         example: "google.com"
-        multiline: false
         required: true
         schema:
           type: string
-    returns:
-      schema:
-        type: string
-  - name: bulk_domain_to_ip
-    description: Digs multiple domains
-    parameters:
-      - name: domains
-        description: array of domain names
-        example: ["google.com","microsoft.com"]
-        required: true
-        schema:
-          type: array
     returns:
       schema:
         type: string
