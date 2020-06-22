@@ -28,17 +28,18 @@ class dig_domain_to_ip(AppBase):
 
 
     async def domain_to_ip(self,domain_names):
-        domains = domain_names.splitlines()
-        output_dig=[]
-        for dom in domains:
-            dig_record=(pydig.query(dom.rstrip(), 'A'))
-            for dig in dig_record:
-                try:
-		    ip=ipaddress.ip_address(dig)
-                    output_dig.append(dom + " #~# " + str(ip))
-               except:
-                   pass
-    return "\n".join(output_dig)
+	 return str(subprocess.getoutput('ls'))
+#        domains = domain_names.splitlines()
+#        output_dig=[]
+#        for dom in domains:
+#            dig_record=(pydig.query(dom.rstrip(), 'A'))
+#            for dig in dig_record:
+#                try:
+#		    ip=ipaddress.ip_address(dig)
+#                    output_dig.append(dom + " #~# " + str(ip))
+#               except:
+#                   pass
+    #return "\n".join(output_dig)
 
 def run(request):
     action = request.get_json() 
