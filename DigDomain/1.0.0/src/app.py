@@ -1,7 +1,7 @@
 import time
 import json
 import random
-import socket
+#import socket
 import asyncio
 import requests
 
@@ -13,9 +13,9 @@ from time import sleep
 
 from walkoff_app_sdk.app_base import AppBase
 
-class DigDomain(AppBase):
+class dig_domain_to_ip(AppBase):
     __version__ = "1.0.0"
-    app_name = "DigDomain"
+    app_name = "dig_domain_to_ip"
 
     def __init__(self, redis, logger, console_logger=None):
         """
@@ -27,39 +27,19 @@ class DigDomain(AppBase):
         super().__init__(redis, logger, console_logger)
 
 
-    async def single_domain_to_ip(domain_name):
-        domain = domain_name
-        dig_output_list = subprocess.getoutput("dig +short " + domain).splitlines()
-        for dig_record in dig_output_list:
-            try:
-                # Using 'ipaddress' library (https://docs.python.org/3/library/ipaddress.html), validate IP Address
-                ipaddress.ip_address(dig_record)
-                return (domain + " #~# " + dig_record)
-            except:
-                pass
+    async def domain_to_ip(self,domain_names):
+        domains = domain_names.splitlines()
+        output_dig=[]
+        for dom in domains:
+            dig_record=(pydig.query(dom.rstrip(), 'A'))
+            for dig in dig_record:
+                try:
+		    ip=ipaddress.ip_address(dig)
+                    output_dig.append(dom + " #~# " + str(ip))
+               except:
+                   pass
+    return "\n".join(output_dig)
 
-    async def bulk_domain_to_ip(domain_name_array):
-
-        # Filename of output
-        #date = time.strftime("%m-%d-%Y")
-        #output_filename = date + "_output_dig.txt"
-        dom_file = filename
-        records=[]
-        for domain in domain_name_array:
-                # Sleep in random intervals provided (currently set anywhere from 2-7 seconds) - in effort to try and not get blocked by bulk dig queries
-                sleep(randint(2,7))
-                # Use Dig Command
-                dig_output_list = subprocess.getoutput("dig +short " + domain).splitlines()
-                for dig_record in dig_output_list:
-                    try:
-                        # Using 'ipaddress' library (https://docs.python.org/3/library/ipaddress.html), validate IP Address
-                        ipaddress.ip_address(dig_record)
-                        records.append(domain + " #~# " + dig_record + '\n')
-                    except:
-                        pass
-        domain_file.close()
-        return "".join(records)
-    
 def run(request):
     action = request.get_json() 
     print(action)
@@ -68,10 +48,10 @@ def run(request):
     current_execution_id = action.get("execution_id")
 	
     if action and "name" in action and "app_name" in action:
-        asyncio.run(Secureworks.run(action), debug=True)
+        asyncio.run(dig_domain_to_ip.run(action), debug=True)
         return f'Attempting to execute function {action["name"]} in app {action["app_name"]}' 
     else:
         return f'Invalid action'
     
 if __name__ == "__main__":
-    asyncio.run(DigDomain.run(), debug=True)
+    asyncio.run(dig_domain_to_ip.run(), debug=True)
