@@ -28,7 +28,8 @@ class dig_domain_to_ip(AppBase):
 
 
     async def domain_to_ip(self,domain_names):
-	 return str(socket.getaddrinfo("google.com",0,0,0,0,0)[-1][-1][0])
+	 return ("working")
+#	 return str(socket.getaddrinfo("google.com",0,0,0,0,0)[-1][-1][0])
 #        domains = domain_names.splitlines()
 #        output_dig=[]
 #        for dom in domains:
