@@ -26,9 +26,12 @@ class dig_domain_to_ip(AppBase):
         """
         super().__init__(redis, logger, console_logger)
 
+    async def domain_to_ip(self,domain_names):
+        message = f"Hello World from {socket.gethostname()} in workflow {self.current_execution_id}!"
 
-        async def domain_to_ip(self,domain_names):
-            return ("working")
+        # This logs to the docker logs
+        self.logger.info(message)
+        return message
 #	 return str(socket.getaddrinfo("google.com",0,0,0,0,0)[-1][-1][0])
 #        domains = domain_names.splitlines()
 #        output_dig=[]
