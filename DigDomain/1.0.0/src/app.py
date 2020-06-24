@@ -42,19 +42,5 @@ class dig_domain_to_ip(AppBase):
 #                   pass
     #return "\n".join(output_dig)
 
-def run(request):
-    action = request.get_json()
-    print(action)
-    print(type(action))
-    authorization_key = action.get("authorization")
-    current_execution_id = action.get("execution_id")
-
-    if action and "name" in action and "app_name" in action:
-        asyncio.run(dig_domain_to_ip.run(action), debug=True)
-        return f'Attempting to execute function {action["name"]} in app {action["app_name"]}'
-    else:
-        return f'Invalid action'
-
-
 if __name__ == "__main__":
     asyncio.run(dig_domain_to_ip.run(), debug=True)
