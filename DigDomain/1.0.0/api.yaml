@@ -2,7 +2,6 @@ walkoff_version: 1.0.0
 app_version: 1.0.0
 name: dig_domain_to_ip
 description: Gets IPs From Domains
-j,hbjmhvgmnghv
 contact_info:
   name: "Bionic Cyber"
   url: https://github.com/bioniccyber
