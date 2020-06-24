@@ -27,8 +27,8 @@ class dig_domain_to_ip(AppBase):
         super().__init__(redis, logger, console_logger)
 
 
-    async def domain_to_ip(self,domain_names):
-	 return ("working")
+        async def domain_to_ip(self,domain_names):
+            return ("working")
 #	 return str(socket.getaddrinfo("google.com",0,0,0,0,0)[-1][-1][0])
 #        domains = domain_names.splitlines()
 #        output_dig=[]
@@ -41,17 +41,17 @@ class dig_domain_to_ip(AppBase):
 #               except:
 #                   pass
     #return "\n".join(output_dig)
-	
+
 def run(request):
-    action = request.get_json() 
+    action = request.get_json()
     print(action)
     print(type(action))
     authorization_key = action.get("authorization")
     current_execution_id = action.get("execution_id")
-	
+
     if action and "name" in action and "app_name" in action:
         asyncio.run(dig_domain_to_ip.run(action), debug=True)
-        return f'Attempting to execute function {action["name"]} in app {action["app_name"]}' 
+        return f'Attempting to execute function {action["name"]} in app {action["app_name"]}'
     else:
         return f'Invalid action'
 
