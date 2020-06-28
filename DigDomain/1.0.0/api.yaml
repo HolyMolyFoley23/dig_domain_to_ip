@@ -1,0 +1,23 @@
+app_version: 1.0.0
+name: Dig Domain
+description: Returns list of ip addresses from a list of domain names
+contact_info:
+  name: "Dig Domain"
+  url: https://shuffler.io
+  email: jfoley@bioniccyber.com
+actions:
+  - name: dig_domain
+    description: Takes a string of domain names and returns their ip address
+    parameters:
+      - name: domains
+        description: A string of domain names
+        required: true
+        multiline: true
+        example: google.com
+        schema:
+          type: string
+    returns:
+      schema:
+        type: string
+
+large_image:
