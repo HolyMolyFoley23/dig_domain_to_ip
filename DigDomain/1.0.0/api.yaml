@@ -6,7 +6,7 @@ contact_info:
   url: https://shuffler.io
   email: jfoley@bioniccyber.com
 actions:
-  - name: dig_domain
+  - name: dig_domains
     description: Takes a string of domain names and returns their ip address
     parameters:
       - name: domains
