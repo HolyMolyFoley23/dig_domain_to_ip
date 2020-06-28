@@ -14,7 +14,7 @@ class Tools(AppBase):
     Inherit from the AppBase class to have Redis, logging, and console logging set up behind the scenes.
     """
     __version__ = "1.0.0"
-    app_name = "Jack Test"  # this needs to match "name" in api.yaml for WALKOFF to work
+    app_name = "Dig Domain"  # this needs to match "name" in api.yaml for WALKOFF to work
 
     def __init__(self, redis, logger, console_logger=None):
         """
