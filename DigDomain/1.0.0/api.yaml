@@ -16,6 +16,13 @@ actions:
         example: google.com
         schema:
           type: string
+      - name: delimiter
+        description: A delimiter. For tabs use \t.  
+        required: true
+        multiline: false
+        example: ~#~
+        schema:
+          type: string
     returns:
       schema:
         type: string
