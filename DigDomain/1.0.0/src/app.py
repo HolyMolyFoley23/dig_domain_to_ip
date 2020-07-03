@@ -27,6 +27,7 @@ class Tools(AppBase):
 
 
     async def dig_domains(self, domains, delimiter):
+        delimiter.replace(r'\t','\t')
         domain_names = domains.splitlines()
         output_dig=[]
         for domain in domain_names:
