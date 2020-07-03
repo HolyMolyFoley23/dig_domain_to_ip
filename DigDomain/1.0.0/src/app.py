@@ -26,7 +26,7 @@ class Tools(AppBase):
         super().__init__(redis, logger, console_logger)
 
 
-    async def dig_domains(self, domains):
+    async def dig_domains(self, domains, delimiter):
         domain_names = domains.splitlines()
         output_dig=[]
         for domain in domain_names:
@@ -34,7 +34,7 @@ class Tools(AppBase):
             for dig in dns:
                 try:
                     ip=ipaddress.ip_address(dig)
-                    output_dig.append(domain + " #~# " + str(ip))
+                    output_dig.append(domain + delimiter + str(ip))
                 except:
                     pass
         return str("\n".join(output_dig))
