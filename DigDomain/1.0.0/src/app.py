@@ -26,7 +26,7 @@ class Tools(AppBase):
         super().__init__(redis, logger, console_logger)
 
 
-    async def dig_domains(self, domains, delimiter):
+    async def dig_domains(self, domains, delimiter=" ~#~ "):
         domain_names = domains.splitlines()
         output_dig=[]
         for domain in domain_names:
